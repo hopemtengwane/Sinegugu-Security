@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sinegugu Website Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
+</head>
+<body>
+<main class="admin-shell">
+  <section id="loginPanel" class="panel login">
+    <img src="assets/logo.png" alt="Sinegugu Security">
+    <h1>Website Admin</h1>
+    <p>Sign in with the administrator account created in Supabase.</p>
+    <label>Email address<input id="email" type="email" autocomplete="username"></label>
+    <label>Password<input id="password" type="password" autocomplete="current-password"></label>
+    <button id="loginBtn">Sign in</button>
+    <p id="loginError" class="error"></p>
+  </section>
+
+  <section id="adminPanel" hidden>
+    <header>
+      <div><h1>Sinegugu Website Admin</h1><p>Changes are stored online and shared by the GitHub and Wix versions.</p></div>
+      <div><a href="index.html">View website</a><button id="logoutBtn" class="secondary">Log out</button></div>
+    </header>
+
+    <p id="adminStatus" class="admin-status" role="status" aria-live="polite"></p>
+
+    <nav class="tabs">
+      <button class="active" data-tab="slides">Hero slideshow</button>
+      <button data-tab="news">News</button>
+      <button data-tab="settings">Settings</button>
+      <button data-tab="data">Backup / migration</button>
+    </nav>
+
+    <section id="slides" class="tab-panel active">
+      <div class="panel">
+        <div class="panel-title">
+          <div><h2>Hero slideshow</h2><p>Upload images, edit wording, reorder slides or remove unwanted slides.</p></div>
+          <label class="file-btn">Upload slide image<input id="addSlideUpload" type="file" accept="image/*"></label>
+        </div>
+        <div id="slideEditor"></div>
+        <button id="saveSlides" class="save">Save slideshow</button>
+      </div>
+    </section>
+
+    <section id="news" class="tab-panel">
+      <div class="panel">
+        <div class="panel-title">
+          <div><h2>News updates</h2><p>Each card uses a short summary. Visitors open the complete article with Read More. The latest publication date appears first.</p></div>
+          <button id="addNews">Add news item</button>
+        </div>
+        <div id="newsEditor"></div>
+        <button id="saveNews" class="save">Save news</button>
+      </div>
+    </section>
+
+    <section id="settings" class="tab-panel">
+      <div class="panel">
+        <h2>Website settings</h2>
+        <p>Choose the public email address displayed on the website.</p>
+        <div class="settings-form">
+          <label>Public contact email<input id="quoteEmail" type="email" required></label>
+          <button id="saveSettings" class="save">Save settings</button>
+        </div>
+        <p class="notice">Quotation enquiries are submitted through Formspree. Change the actual recipient mailbox in the Formspree dashboard if required.</p>
+      </div>
+    </section>
+
+    <section id="data" class="tab-panel">
+      <div class="panel">
+        <h2>Backup and migration</h2>
+        <p>Move the earlier browser-only content into Supabase, load defaults, or work with a JSON backup.</p>
+        <div class="actions">
+          <button id="migrateBrowserBtn">Migrate earlier browser content</button>
+          <button id="seedDefaultsBtn">Load default content</button>
+          <button id="exportBtn">Export JSON</button>
+          <label class="file-btn">Import JSON<input id="importFile" type="file" accept="application/json"></label>
+        </div>
+        <p class="notice">After loading or migrating content, use the Save button in each section to publish it to the shared database.</p>
+      </div>
+    </section>
+  </section>
+</main>
+<script src="admin.js"></script>
+</body>
+</html>
